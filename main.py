@@ -1,4 +1,15 @@
 
+from tabulate import tabulate
+#base de dados
+medicamentos = [
+    {"id": "id", "nome": "nome", "data_fabricacao": "data_fabricacao", "data_validade": "data_validade"},
+        {"id": 1, "nome": "Paracetamol", "data_fabricacao": "2023-01-15", "data_validade": "2025-01-15"},
+        {"id": 2, "nome": "Amoxicilina", "data_fabricacao": "2023-02-28", "data_validade": "2025-02-28"},
+        {"id": 3, "nome": "Omeprazol", "data_fabricacao": "2023-03-10", "data_validade": "2025-03-10"},
+        {"id": 4, "nome": "Dipirona", "data_fabricacao": "2023-04-05", "data_validade": "2025-04-05"},
+        {"id": 5, "nome": "Ibuprofeno", "data_fabricacao": "2023-05-20", "data_validade": "2025-05-20"}
+    ]
+
 
 #criando funcoes
 def set_senha():
@@ -31,13 +42,11 @@ acoes = {1: "cadastrar", 2: "consultar", 3: "deletar", 4: "sair"}
 
 
 escolha = forca_opcao(acoes,"erro")
-
-
+if escolha =="2":
+    print(tabulate(medicamentos, headers="firstrow", tablefmt="grid"))
 
 #criando objeto medicamento
 
-indificao=int(input("codigo do medicamento"))
-nome= input("digite o nome do medicamento")
-validade=int(input("digitr a data de validade "))
-fabricacao=(int(input("digite a data de fabricação")))
 
+
+acoes
