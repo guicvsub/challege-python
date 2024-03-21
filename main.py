@@ -17,7 +17,7 @@ medicamentos = {
 }
 
 #criando funcoes
-def set_senha():#bug
+def set_senha():
     nome = "administrador"
     usuario = input("digite seu usuario")
     senha = input("digite sua senha")
@@ -52,22 +52,34 @@ def forca_opcao(lista, msg):
     while opcao not in [str(chave) for chave in lista]:
         opcao = input(msg)
     return opcao
-
-
 log = set_senha()
 
-acoes = {"1": "cadastrar", "2": "consultar", "3": "deletar", "4": "sair"}
-
-escolha = forca_opcao(acoes, "erro")
-if escolha== "1":
-    print(f"voce escolheu {acoes[escolha]}")
-    new= cadastrar(medicamentos)
-    print("cadastro com efetuado com sucesso ")
-    print(f"o usuario: {log} cadastrou um novo medicamento chamado {new['nome']} em {data_atual} as {hora_atual}")
 
 
-if escolha =="2":
-    print(tabulate(medicamentos, headers="firstrow", tablefmt="grid"))
-    print(f'o usuario {log} acessou o sistema em {data_atual} as {hora_atual}')
+while True:
 
 
+
+    acoes = {"1": "cadastrar", "2": "consultar", "3": "deletar", "4": "sair"}
+
+
+
+    escolha = forca_opcao(acoes, "erro")
+    if escolha== "1":
+        print(f"voce escolheu {acoes[escolha]}")
+        new= cadastrar(medicamentos)
+        print("cadastro com efetuado com sucesso ")
+        print(f"o usuario: {log} cadastrou um novo medicamento chamado {new['nome']} em {data_atual} as {hora_atual}")
+
+        continuar = input("Deseja continuar? (y/n): ")
+        if continuar.lower() != "y":
+            break
+
+    elif escolha =="2":
+        print(tabulate(medicamentos, headers="firstrow", tablefmt="grid"))
+        print(f'o usuario {log} acessou o sistema em {data_atual} as {hora_atual}')
+
+
+    elif escolha == "4":
+
+        break
