@@ -20,9 +20,17 @@ def set_senha():#bug
         usuario = input("digite seu usuario")
         senha = input("digite sua senha")
 
-
-
 log = set_senha()
+def cadastrar(medicamentos):
+    novo_medicamento = {}
+    for key in medicamentos.keys():
+        info = input(f'Diga o {key} do novo medicamento: ')
+        novo_medicamento[key] = info
+        medicamentos[key].append(info)
+    return novo_medicamento
+
+# Exemplo de uso da função
+
 
 def printa_chave_valor(dicionario):
     """Imprime as chaves e valores de um dicionário."""
@@ -40,10 +48,9 @@ acoes = {"1": "cadastrar", "2": "consultar", "3": "deletar", "4": "sair"}
 
 escolha = forca_opcao(acoes, "erro")
 if escolha== "1":
-    print(f"voce escoljeu {acoes[escolha]}")
-    for key in medicamentos.keys():
-        info = input(f'Diga o {key} do novo medicaneto: ')
-        medicamentos[key].append(info)
+    print(f"voce escolheu {acoes[escolha]}")
+    new= cadastrar(medicamentos)
+    print(tabulate(medicamentos, headers="firstrow", tablefmt="grid"))
 
 
 if escolha =="2":
