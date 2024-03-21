@@ -1,5 +1,11 @@
 
 from tabulate import tabulate
+import datetime
+
+data_hora_atual = datetime.datetime.now()
+hora_atual  = data_hora_atual.strftime("%H:%M")
+data_atual = data_hora_atual.date()
+
 #base de dados
 medicamentos = {
     "nome": ["Paracetamol", "Amoxicilina", "Omeprazol", "Dipirona", "Ibuprofeno"],
@@ -12,6 +18,7 @@ medicamentos = {
 
 #criando funcoes
 def set_senha():#bug
+    nome = "administrador"
     usuario = input("digite seu usuario")
     senha = input("digite sua senha")
     while senha!="adm" or usuario!="adm":
@@ -19,8 +26,10 @@ def set_senha():#bug
         print("tente novamente")
         usuario = input("digite seu usuario")
         senha = input("digite sua senha")
+    print(f"seja bem vinddo: {nome}")
+    return nome
 
-log = set_senha()
+
 def cadastrar(medicamentos):
     novo_medicamento = {}
     for key in medicamentos.keys():
@@ -29,7 +38,7 @@ def cadastrar(medicamentos):
         medicamentos[key].append(info)
     return novo_medicamento
 
-# Exemplo de uso da função
+
 
 
 def printa_chave_valor(dicionario):
@@ -44,18 +53,21 @@ def forca_opcao(lista, msg):
         opcao = input(msg)
     return opcao
 
+
+log = set_senha()
+
 acoes = {"1": "cadastrar", "2": "consultar", "3": "deletar", "4": "sair"}
 
 escolha = forca_opcao(acoes, "erro")
 if escolha== "1":
     print(f"voce escolheu {acoes[escolha]}")
     new= cadastrar(medicamentos)
-    print(tabulate(medicamentos, headers="firstrow", tablefmt="grid"))
+    print("cadastro com efetuado com sucesso ")
+    print(f"o usuario: {log} cadastrou um novo medicamento chamado {new['nome']} em {data_atual} as {hora_atual}")
 
 
 if escolha =="2":
     print(tabulate(medicamentos, headers="firstrow", tablefmt="grid"))
-#criando objeto medicamento
-
+    print(f'o usuario {log} acessou o sistema em {data_atual} as {hora_atual}')
 
 
