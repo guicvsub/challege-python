@@ -2,8 +2,6 @@
 from tabulate import tabulate
 #base de dados
 medicamentos = {
-    "id":["nome","data_fabricacao","data_validade","quantidade","preco_unitario","fabricante"],
-
     "nome": ["Paracetamol", "Amoxicilina", "Omeprazol", "Dipirona", "Ibuprofeno"],
     "data_fabricacao": ["2023-01-15", "2023-02-28", "2023-03-10", "2023-04-05", "2023-05-20"],
     "data_validade": ["2025-01-15", "2025-02-28", "2025-03-10", "2025-04-05", "2025-05-20"],
@@ -16,7 +14,7 @@ medicamentos = {
 def set_senha():#bug
     usuario = input("digite seu usuario")
     senha = input("digite sua senha")
-    while senha!="adm"and usuario!="adm":
+    while senha!="adm" or usuario!="adm":
         print("usuario ou senha invalidos")
         print("tente novamente")
         usuario = input("digite seu usuario")
@@ -44,12 +42,12 @@ escolha = forca_opcao(acoes, "erro")
 if escolha== "1":
     print(f"voce escoljeu {acoes[escolha]}")
     for key in medicamentos.keys():
-        info = input(f'Diga o/a {key} do novo medicaneto: ')
+        info = input(f'Diga o {key} do novo medicaneto: ')
         medicamentos[key].append(info)
+
 
 if escolha =="2":
     print(tabulate(medicamentos, headers="firstrow", tablefmt="grid"))
-
 #criando objeto medicamento
 
 
