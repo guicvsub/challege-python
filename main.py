@@ -37,6 +37,19 @@ def cadastrar(medicamentos):
         medicamentos[key].append(info)
     return novo_medicamento
 
+def remover_medicamento(medicamentos):
+    printa_itens(medicamentos['nome'])
+    medicamento= input("digite o medicamento que deseja remover")
+    while medicamento not in medicamentos['nome']:
+        print(f"o medicamento nao foi encontrado! tente novamente")
+        medicamento = input("digite o medicamento que deseja remover")
+    for lista in medicamentos.values():
+        if medicamento in lista:
+            index = lista.index(medicamento)
+            for key in medicamentos.keys():
+                del medicamentos[key][index]
+    return str(medicamento)
+
 def printa_chave_valor(dicionario):
     """Imprime as chaves e valores de um dicionário."""
     for chave in dicionario:
@@ -49,9 +62,13 @@ def forca_opcao(lista, msg):
         opcao = input(msg)
     return opcao
 
+def printa_itens(lista):
+    for item in lista:
+        print(item)
 
 
-def parar_execução(continuar):
+def parar_execução():
+    continuar = input("Deseja continuar? (s/n): ")
     while continuar != "n" and continuar != "s":
         print("comando invalido")
         continuar = input("Deseja continuar? (s/n): ")
@@ -59,7 +76,7 @@ def parar_execução(continuar):
         print("fechando programa")
         return "stop"
     return "continue"
-def acha_
+
 
 log = set_senha()
 
@@ -80,19 +97,25 @@ while True:
         print("cadastro com efetuado com sucesso ")
         print(f"o usuario: {log} cadastrou um novo medicamento chamado {new['nome']} em {data_atual} as {hora_atual}")
         continuar = input("Deseja continuar? (s/n): ")
-        resultado = parar_execução(continuar)
+        resultado = parar_execução()
         if resultado=="stop":
             break
 
     elif escolha =="2":
         print(tabulate(medicamentos, headers="firstrow", tablefmt="grid"))
         print(f'o usuario {log} acessou o sistema em {data_atual} as {hora_atual}')
-        continuar = input("Deseja continuar? (s/n): ")
-        resultado = parar_execução(continuar)
+        resultado = parar_execução()
         if resultado == "stop":
             break
 
 
+    elif escolha == "3":
+        medicamento_a_ser_elimonado= remover_medicamento(medicamentos)
+        print(f"o usuario: {log} removeu  o medicamento chamado {medicamento_a_ser_elimonado} em {data_atual} as {hora_atual}")
+        resultado = parar_execução()
+        if resultado == "stop":
+            break
 
-    elif escolha == "4":
+
+    elif escolha =="4":
         break
